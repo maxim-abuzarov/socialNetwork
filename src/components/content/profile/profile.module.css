@@ -1,0 +1,33 @@
+.profile {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.photo img {
+    content: '';
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.info {
+    width: 100%;
+}
+
+.info h2 {
+    padding: 0 0 5px 0;
+    text-align: start;
+}
+
+.status {
+    color: rgb(98, 109, 122);
+    border-bottom: 1px solid rgb(240, 240, 240);
+    margin-bottom: 30px;
+}

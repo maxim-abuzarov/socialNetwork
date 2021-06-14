@@ -1,0 +1,29 @@
+.header {
+    grid-area: header;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 60px;
+    z-index: 120;
+    display: grid;
+    grid-template: 1fr / 1fr  minmax(auto, 170px) minmax(auto, 1000px) 1fr;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(240, 240, 240);
+    padding: 5px 0;
+}
+
+.logotype {
+    grid-column: 2 / 3;
+    padding-left: 15px;
+}
+
+.logotype img {
+    width: 50px;
+    height: 50px;
+    transition: all .2s ease-in-out;
+}
+
+.logotype img:hover {
+    transform: translateY(-2px);
+}
