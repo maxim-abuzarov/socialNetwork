@@ -15,7 +15,7 @@
 
 .app-wrapper {
     display: grid;
-    grid-template: 60px 1fr 60px / 2fr 10fr;
+    grid-template: 60px 1fr 80px / 2fr 10fr;
     grid-template-areas:
             'header header'
             'navigation content'
@@ -25,4 +25,8 @@
     max-width: 1170px;
     margin: 0 auto;
     padding: 0 15px;
+}
+
+.app-content {
+    grid-area: content;
 }

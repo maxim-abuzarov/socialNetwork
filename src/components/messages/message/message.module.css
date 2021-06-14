@@ -1,0 +1,21 @@
+.message {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    margin-bottom: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.message:last-child {
+    margin-bottom: 0;
+}
+
+.message:hover {
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.message h3 {
+    font-weight: normal;
+}

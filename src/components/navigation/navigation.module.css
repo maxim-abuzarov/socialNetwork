@@ -31,6 +31,10 @@
     color: rgb(0, 0, 0);
 }
 
+.navigation ul li a.active {
+    color: rgb(6, 150, 255);
+}
+
 .navigation ul li a img {
     height: 22px;
     width: 22px;

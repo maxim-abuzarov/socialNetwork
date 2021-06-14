@@ -1,5 +1,6 @@
 import React from 'react';
 import postsClasses from './posts.module.css';
+import Post from "./post/Post";
 
 const Posts = () => {
     return (
@@ -11,10 +12,12 @@ const Posts = () => {
 
             <div className={postsClasses.addPost}>
 
-                <textarea placeholder='Add your post'></textarea>
+                <textarea placeholder='Add your post'>Add your post</textarea>
                 <button>Add</button>
 
             </div>
+
+            <Post />
 
         </div>
     );

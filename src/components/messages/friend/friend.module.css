@@ -1,0 +1,30 @@
+.friend {
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    margin-right: 15px;
+    margin-top: 10px;
+    transition: all .2s ease-in-out;
+    text-decoration: none;
+    color: black;
+    min-width: 90px;
+    min-height: 90px;
+    text-align: center;
+    padding: 5px;
+}
+
+.friend img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.friend:hover {
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+    cursor: pointer;
+    transform: translateY(-8px);
+}
+
+.friend:last-child {
+    margin-right: 0;
+}
