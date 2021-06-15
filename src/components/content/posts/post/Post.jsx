@@ -1,25 +1,25 @@
 import React from 'react';
 import postClasses from './post.module.css';
 
-const Post = () => {
+const Post = (props) => {
     return (
         <div className={postClasses.post}>
             <div className={postClasses.header}>
 
                 <div className={postClasses.left}>
-                    <img src="https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg" alt="Author avatar"/>
+                    <img src={props.url} alt="Author avatar"/>
                 </div>
 
                 <div className={postClasses.author}>
-                    <h4>Maxim Abuzarov</h4>
-                    <p>23 Aug 2021</p>
+                    <h4>{props.author}</h4>
+                    <p>{props.date}</p>
                 </div>
 
             </div>
 
             <div className={postClasses.content}>
-                <h2>Post title</h2>
-                <p>Post text</p>
+                <h2>{props.title}</h2>
+                <p>{props.text}</p>
             </div>
         </div>
     );

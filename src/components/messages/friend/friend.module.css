@@ -1,3 +1,11 @@
+.friends {
+    margin-right: 15px;
+}
+
+.friends:last-child {
+    margin-right: 0;
+}
+
 .friend {
     border-radius: 10px;
     border: 1px solid rgb(240, 240, 240);
@@ -6,8 +14,8 @@
     transition: all .2s ease-in-out;
     text-decoration: none;
     color: black;
-    min-width: 90px;
-    min-height: 90px;
+    min-width: 120px;
+    min-height: 120px;
     text-align: center;
     padding: 5px;
 }
@@ -15,6 +23,7 @@
 .friend img {
     width: 50px;
     height: 50px;
+    margin-top: 10px;
     border-radius: 50%;
 }
 

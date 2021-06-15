@@ -2,7 +2,16 @@ import React from 'react';
 import postsClasses from './posts.module.css';
 import Post from "./post/Post";
 
-const Posts = () => {
+const Posts = (props) => {
+    let posts = props.postsData.map(post => <Post
+        key={post.id}
+        author={post.author}
+        date={post.date}
+        title={post.title}
+        text={post.text}
+        url={post.url}
+    />)
+
     return (
         <div className={postsClasses.posts}>
 
@@ -12,12 +21,12 @@ const Posts = () => {
 
             <div className={postsClasses.addPost}>
 
-                <textarea placeholder='Add your post'>Add your post</textarea>
+                <textarea placeholder='Add your post'></textarea>
                 <button>Add</button>
 
             </div>
 
-            <Post />
+            {posts}
 
         </div>
     );

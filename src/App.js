@@ -6,14 +6,19 @@ import Content from "./components/content/Content";
 import Messages from "./components/messages/Messages";
 import Footer from "./components/footer/Footer";
 
-function App() {
+function App(props) {
     return (
         <div className='app-wrapper'>
             <Header />
-            <Navigation />
+            <Navigation friendsList={props.state.asideFriends.friendsData}/>
             <div className='app-content'>
-                <Route path='/profile' component={Content} />
-                <Route path='/messages' component={Messages} />
+                <Route path='/profile' render={ () => <Content
+                    postsData={props.state.profilePage.postsData}/>
+                }/>
+                <Route path='/messages' render={ () => <Messages
+                    messagesData={props.state.messagesPage.messagesData}
+                    friendsData={props.state.messagesPage.friendsData}/>
+                }/>
             </div>
             <Footer />
         </div>

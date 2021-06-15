@@ -2,13 +2,13 @@ import React from 'react';
 import Profile from "./profile/Profile";
 import Posts from "./posts/Posts";
 
-const Content = () => {
+const Content = (props) => {
     return (
         <aside>
 
             <Profile />
 
-            <Posts />
+            <Posts postsData={props.postsData}/>
 
         </aside>
     );

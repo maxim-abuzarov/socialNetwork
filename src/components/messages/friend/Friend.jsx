@@ -1,15 +1,18 @@
 import React from 'react';
 import friendClasses from './friend.module.css';
+import {NavLink} from "react-router-dom";
 
-const Friend = () => {
+const Friend = (props) => {
     return (
-        <div className={friendClasses.friend}>
+        <NavLink to={'/messages/id' + props.id} className={friendClasses.friends}>
+            <div className={friendClasses.friend}>
 
-            <h2>Maxim</h2>
+                <h2>{props.name}</h2>
 
-            <img src='https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg' alt='Friend avatar'/>
+                <img src={props.url} alt='Friend avatar'/>
 
-        </div>
+            </div>
+        </NavLink>
     );
 };
 

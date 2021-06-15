@@ -4,8 +4,16 @@ import navigationClasses from './navigation.module.css';
 import profileIcon from './img/profile.svg';
 import messagesIcon from './img/messages.svg';
 import usersIcon from './img/users.svg';
+import Friend from "./friends/Friend";
 
-const Navigation = () => {
+const Navigation = (props) => {
+    let friends = props.friendsList.map(friend => <Friend
+        key={friend.id}
+        id={friend.id}
+        name={friend.name}
+        url={friend.url}
+    />)
+
     return (
         <nav className={navigationClasses.navigation}>
             <ul>
@@ -32,6 +40,18 @@ const Navigation = () => {
                 </li>
 
             </ul>
+
+            <div className={navigationClasses.friendsBlock}>
+
+                <div>
+                    <h1>Friends</h1>
+                </div>
+
+                <div className={navigationClasses.friends}>
+                    {friends}
+                </div>
+
+            </div>
         </nav>
     );
 };

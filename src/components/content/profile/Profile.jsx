@@ -12,7 +12,6 @@ const Profile = () => {
             <div className={profileClasses.info}>
                 <h2>Maxim Abuzarov</h2>
 
-
                 <div className={profileClasses.status}>
                     Status
                 </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import messageClasses from './message.module.css';
 
-const Message = () => {
+const Message = (props) => {
     return (
         <div className={messageClasses.message}>
-            <h3>Message from friend</h3>
+            <h3>{props.message}</h3>
         </div>
     );
 };

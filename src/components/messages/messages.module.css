@@ -3,17 +3,15 @@
     padding: 15px;
     border-radius: 10px;
     border: 1px solid rgb(240, 240, 240);
+    display: flex;
+    justify-content: space-between;
 }
 
-.header {
+.leftCol {
     padding: 10px;
-    margin-bottom: 50px;
+    width: 49%;
     border-radius: 10px;
     border: 1px solid rgb(240, 240, 240);
-}
-
-.head {
-    margin-bottom: 20px;
 }
 
 .friends {
@@ -24,18 +22,22 @@
     transition: all .2s ease-in-out;
 }
 
-.dialogs {
+.rightCol {
     padding: 10px;
+    width: 49%;
     border-radius: 10px;
     border: 1px solid rgb(240, 240, 240);
     display: block;
 }
 
+.head {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
 .write {
-    padding: 10px;
     border-radius: 10px;
-    margin-top: 50px;
-    border: 1px solid rgb(240, 240, 240);
+    margin-top: 30px;
 }
 
 .messages h1 {
@@ -48,7 +50,6 @@
 .writeMessage {
     position: relative;
     height: 120px;
-    padding: 10px;
     margin-bottom: 20px;
 }
 
@@ -72,7 +73,7 @@
 
 .writeMessage button {
     position: absolute;
-    right: 10px;
+    right: 0;
     width: 100px;
     background-color: transparent;
     border: 1px solid rgb(240, 240, 240);
