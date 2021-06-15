@@ -2,7 +2,7 @@ import React from 'react';
 import messagesClasses from './messages.module.css';
 import Message from "./message/Message";
 import Friend from "./friend/Friend";
-import {sendMessageAC, updateNewMessageTextAC} from "../../redux/state";
+import {sendMessageAC, updateNewMessageTextAC} from "../../redux/reducers/messagesReducer";
 
 const Messages = (props) => {
     let friends = props.friendsData.map(friend => <Friend

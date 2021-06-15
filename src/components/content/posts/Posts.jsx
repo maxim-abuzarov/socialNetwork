@@ -1,7 +1,7 @@
 import React from 'react';
 import postsClasses from './posts.module.css';
 import Post from "./post/Post";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/reducers/profileReducer";
 
 const Posts = (props) => {
     let posts = props.postsData.map(post => <Post

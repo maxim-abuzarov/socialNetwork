@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import store  from './redux/state';
+import store from './redux/store';
 
-export let rerender = () => {
+export let rerender = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
                 <App
-                    state={store.getState()}
+                    state={state}
                     dispatch={store.dispatch.bind(store)}
                 />
             </BrowserRouter>
@@ -18,6 +18,9 @@ export let rerender = () => {
     );
 }
 
-rerender()
+rerender(store.getState())
 
-store.subscribe(rerender)
+store.subscribe(() => {
+    let state = store.getState()
+    rerender(state)
+})
