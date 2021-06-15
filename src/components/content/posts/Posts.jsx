@@ -1,6 +1,7 @@
 import React from 'react';
 import postsClasses from './posts.module.css';
 import Post from "./post/Post";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/state";
 
 const Posts = (props) => {
     let posts = props.postsData.map(post => <Post
@@ -12,6 +13,15 @@ const Posts = (props) => {
         url={post.url}
     />)
 
+    let addPost = () => {
+        props.dispatch(addPostAC());
+    }
+
+    let onPostChange = (e) => {
+        let newText = e.target.value;
+        props.dispatch(updateNewPostTextAC(newText));
+    }
+
     return (
         <div className={postsClasses.posts}>
 
@@ -21,8 +31,12 @@ const Posts = (props) => {
 
             <div className={postsClasses.addPost}>
 
-                <textarea placeholder='Add your post'></textarea>
-                <button>Add</button>
+                <textarea
+                    onChange={onPostChange}
+                    placeholder='Add your post'
+                    value={props.newPostText}
+                />
+                <button onClick={addPost}>Add</button>
 
             </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import messagesClasses from './messages.module.css';
 import Message from "./message/Message";
 import Friend from "./friend/Friend";
+import {sendMessageAC, updateNewMessageTextAC} from "../../redux/state";
 
 const Messages = (props) => {
     let friends = props.friendsData.map(friend => <Friend
@@ -15,6 +16,15 @@ const Messages = (props) => {
         key={message.id}
         message={message.message}
     />)
+
+    let sendMessage = () => {
+        props.dispatch(sendMessageAC());
+    }
+
+    let onMessageChange = (e) => {
+        let newText = e.target.value;
+        props.dispatch(updateNewMessageTextAC(newText));
+    }
 
     return (
         <div className={messagesClasses.messages}>
@@ -41,8 +51,12 @@ const Messages = (props) => {
                 <div className={messagesClasses.write}>
 
                     <div className={messagesClasses.writeMessage}>
-                        <textarea placeholder='Write message to your friend'></textarea>
-                        <button>Send</button>
+                        <textarea
+                            placeholder='Write message to your friend'
+                            onChange={onMessageChange}
+                            value={props.newMessageText}
+                        />
+                        <button onClick={sendMessage}>Send</button>
                     </div>
 
                 </div>

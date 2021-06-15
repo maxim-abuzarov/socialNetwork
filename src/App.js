@@ -13,11 +13,17 @@ function App(props) {
             <Navigation friendsList={props.state.asideFriends.friendsData}/>
             <div className='app-content'>
                 <Route path='/profile' render={ () => <Content
-                    postsData={props.state.profilePage.postsData}/>
+                    postsData={props.state.profilePage.postsData}
+                    newPostText={props.state.profilePage.newPostText}
+                    dispatch={props.dispatch}
+                />
                 }/>
                 <Route path='/messages' render={ () => <Messages
                     messagesData={props.state.messagesPage.messagesData}
-                    friendsData={props.state.messagesPage.friendsData}/>
+                    friendsData={props.state.messagesPage.friendsData}
+                    newMessageText={props.state.messagesPage.newMessageText}
+                    dispatch={props.dispatch}
+                />
                 }/>
             </div>
             <Footer />

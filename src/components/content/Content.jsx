@@ -8,7 +8,10 @@ const Content = (props) => {
 
             <Profile />
 
-            <Posts postsData={props.postsData}/>
+            <Posts postsData={props.postsData}
+                   newPostText={props.newPostText}
+                   dispatch={props.dispatch}
+            />
 
         </aside>
     );
