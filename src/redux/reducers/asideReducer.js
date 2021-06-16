@@ -6,7 +6,7 @@ let initialState = {
     ],
 }
 
-const asideReducer = (state = initialState, action) => {
+const asideReducer = (state = initialState) => {
     return state;
 }
 

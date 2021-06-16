@@ -7,9 +7,9 @@ const Friend = (props) => {
         <NavLink to={'/messages/id' + props.id} className={friendClasses.friends}>
             <div className={friendClasses.friend}>
 
-                <h2>{props.name}</h2>
-
                 <img src={props.url} alt='Friend avatar'/>
+
+                <h2>{props.name}</h2>
 
             </div>
         </NavLink>

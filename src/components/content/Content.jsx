@@ -1,17 +1,14 @@
 import React from 'react';
 import Profile from "./profile/Profile";
-import Posts from "./posts/Posts";
+import PostsContainer from "./posts/PostsContainer";
 
-const Content = (props) => {
+const Content = () => {
     return (
         <aside>
 
             <Profile />
 
-            <Posts postsData={props.postsData}
-                   newPostText={props.newPostText}
-                   dispatch={props.dispatch}
-            />
+            <PostsContainer />
 
         </aside>
     );

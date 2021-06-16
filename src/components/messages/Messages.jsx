@@ -2,28 +2,27 @@ import React from 'react';
 import messagesClasses from './messages.module.css';
 import Message from "./message/Message";
 import Friend from "./friend/Friend";
-import {sendMessageAC, updateNewMessageTextAC} from "../../redux/reducers/messagesReducer";
 
 const Messages = (props) => {
-    let friends = props.friendsData.map(friend => <Friend
+    let friends = props.friends.map(friend => <Friend
         key={friend.id}
         name={friend.name}
         id={friend.id}
         url={friend.url}
     />)
 
-    let messages = props.messagesData.map(message => <Message
+    let messages = props.messages.map(message => <Message
         key={message.id}
         message={message.message}
     />)
 
     let sendMessage = () => {
-        props.dispatch(sendMessageAC());
+        props.sendMessage();
     }
 
     let onMessageChange = (e) => {
         let newText = e.target.value;
-        props.dispatch(updateNewMessageTextAC(newText));
+        props.onMessageChange(newText);
     }
 
     return (

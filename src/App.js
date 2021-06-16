@@ -1,28 +1,19 @@
 import './App.css'
 import {Route} from 'react-router-dom';
 import Header from "./components/header/Header";
-import Navigation from "./components/navigation/Navigation";
 import Content from "./components/content/Content";
-import Messages from "./components/messages/Messages";
 import Footer from "./components/footer/Footer";
+import MessagesContainer from "./components/messages/MessagesContainer";
+import NavigationContainer from "./components/navigation/NavigationContainer";
 
-function App(props) {
+function App() {
     return (
         <div className='app-wrapper'>
             <Header />
-            <Navigation friendsList={props.state.aside.friendsData}/>
+            <NavigationContainer />
             <div className='app-content'>
-                <Route path='/profile' render={ () => <Content
-                    postsData={props.state.profilePage.postsData}
-                    newPostText={props.state.profilePage.newPostText}
-                    dispatch={props.dispatch}/>
-                }/>
-                <Route path='/messages' render={ () => <Messages
-                    messagesData={props.state.messagesPage.messagesData}
-                    friendsData={props.state.messagesPage.friendsData}
-                    newMessageText={props.state.messagesPage.newMessageText}
-                    dispatch={props.dispatch}/>
-                }/>
+                <Route path='/profile' render={ () => <Content /> }/>
+                <Route path='/messages' render={ () => <MessagesContainer /> }/>
             </div>
             <Footer />
         </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import postsClasses from './posts.module.css';
 import Post from "./post/Post";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/reducers/profileReducer";
 
 const Posts = (props) => {
-    let posts = props.postsData.map(post => <Post
+    let posts = [...props.posts]
+        .reverse()
+        .map(post => <Post
         key={post.id}
         author={post.author}
         date={post.date}
@@ -14,12 +15,12 @@ const Posts = (props) => {
     />)
 
     let addPost = () => {
-        props.dispatch(addPostAC());
+        props.addPost();
     }
 
     let onPostChange = (e) => {
         let newText = e.target.value;
-        props.dispatch(updateNewPostTextAC(newText));
+        props.onPostChange(newText);
     }
 
     return (

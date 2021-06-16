@@ -21,13 +21,17 @@ const profileReducer = (state = initialState, action) => {
                 text: state.newPostText,
                 url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg',
             };
-            state.postsData.push(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                postsData: [...state.postsData, newPost],
+                newPostText: '',
+            }
 
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            return {
+                ...state,
+                newPostText: action.newText,
+            }
 
         default:
             return state;

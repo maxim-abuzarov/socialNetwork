@@ -7,7 +7,7 @@ import usersIcon from './img/users.svg';
 import Friend from "./friends/Friend";
 
 const Navigation = (props) => {
-    let friends = props.friendsList.map(friend => <Friend
+    let friends = props.friends.map(friend => <Friend
         key={friend.id}
         id={friend.id}
         name={friend.name}
