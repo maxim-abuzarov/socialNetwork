@@ -24,8 +24,9 @@
 }
 
 .name h1 {
-    margin-bottom: 5px;
-    font-weight: normal;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .photo img {
@@ -59,4 +60,57 @@
 
 .button button.followed {
     background-color: rgb(240, 240, 240);
+}
+
+.pages {
+    width: 98%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 57px;
+}
+
+.page {
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    padding: 12px;
+    transition: all .2s ease-in-out;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+}
+
+.pageSelected {
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    padding: 12px;
+    transition: all .2s ease-in-out;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(240, 240, 240);
+}
+
+.pageSelected:hover {
+    cursor: pointer;
 }
