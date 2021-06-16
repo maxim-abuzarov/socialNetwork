@@ -1,11 +1,13 @@
+import avatar from './../../assets/img/unknownUser.jpeg';
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 let initialState = {
     postsData: [
-        {id: 1, author: 'Maxim Abuzarov', date: '30 Aug 2021', title: 'Post #1', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
-        {id: 2, author: 'Yuri Zaikov', date: '12 Aug 2021', title: 'Post #2', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
-        {id: 3, author: 'Tamirlan Tuyakov', date: '01 March 2021', title: 'Post #3', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
+        {id: 1, author: 'Maxim Abuzarov', date: '30 Aug 2021', title: 'Post #1', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: avatar},
+        {id: 2, author: 'Yuri Zaikov', date: '12 Aug 2021', title: 'Post #2', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: avatar},
+        {id: 3, author: 'Tamirlan Tuyakov', date: '01 March 2021', title: 'Post #3', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: avatar},
     ],
     newPostText: '',
 }
@@ -19,7 +21,7 @@ const profileReducer = (state = initialState, action) => {
                 date: '15 June 2021',
                 title: 'Post #4',
                 text: state.newPostText,
-                url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg',
+                url: avatar,
             };
             return {
                 ...state,

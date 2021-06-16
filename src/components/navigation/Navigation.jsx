@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import navigationClasses from './navigation.module.css';
-import profileIcon from './img/profile.svg';
-import messagesIcon from './img/messages.svg';
-import usersIcon from './img/users.svg';
+import profileIcon from './../../assets/img/profile.svg';
+import messagesIcon from './../../assets/img/messages.svg';
+import usersIcon from './../../assets/img/users.svg';
 import Friend from "./friends/Friend";
 
 const Navigation = (props) => {

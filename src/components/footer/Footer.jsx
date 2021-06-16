@@ -1,7 +1,7 @@
 import React from 'react';
 import footerClasses from './footer.module.css';
-import vkIcon from './img/vk.svg';
-import githubIcon from './img/github.svg';
+import vkIcon from './../../assets/img/vk.svg'
+import githubIcon from './../../assets/img/github.svg';
 
 const Footer = () => {
     return (

@@ -1,11 +1,13 @@
+import avatar from './../../assets/img/unknownUser.jpeg';
+
 const SEND_MESSAGE = 'SEND-MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     friendsData: [
-        {id: 1, name: 'Maxim', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
-        {id: 2, name: 'Oleg', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
-        {id: 3, name: 'Yury', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
+        {id: 1, name: 'Maxim', url: avatar},
+        {id: 2, name: 'Oleg', url: avatar},
+        {id: 3, name: 'Yury', url: avatar},
     ],
     messagesData: [
         {id: 1, message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},

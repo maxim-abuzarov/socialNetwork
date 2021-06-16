@@ -1,12 +1,13 @@
 import React from 'react';
 import profileClasses from './profile.module.css';
+import avatar from './../../../assets/img/unknownUser.jpeg';
 
 const Profile = () => {
     return (
         <div className={profileClasses.profile}>
 
             <div className={profileClasses.photo}>
-                <img src="https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg" alt="Profile avatar"/>
+                <img src={avatar} alt="Profile avatar"/>
             </div>
 
             <div className={profileClasses.info}>

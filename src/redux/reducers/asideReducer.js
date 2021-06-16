@@ -1,8 +1,10 @@
+import avatar from './../../assets/img/unknownUser.jpeg';
+
 let initialState = {
     friendsData: [
-        {id: 1, name: 'Maxim', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
-        {id: 2, name: 'Oleg', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
-        {id: 3, name: 'Yury', url: 'https://z0sqrs-a.akamaihd.net/1647-easthillmedical/staff/he.jpg'},
+        {id: 1, name: 'Maxim', url: avatar},
+        {id: 2, name: 'Oleg', url: avatar},
+        {id: 3, name: 'Yury', url: avatar},
     ],
 }
 
