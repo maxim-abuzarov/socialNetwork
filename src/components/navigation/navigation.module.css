@@ -51,6 +51,7 @@
 .friends {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .friends a {

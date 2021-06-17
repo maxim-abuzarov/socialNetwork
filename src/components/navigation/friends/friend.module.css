@@ -1,5 +1,5 @@
 .friend {
-    min-width: 80px;
+    width: 100%;
     padding: 5px;
     transition: all .2s ease-in-out;
 }

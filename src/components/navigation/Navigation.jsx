@@ -5,13 +5,14 @@ import profileIcon from './../../assets/img/profile.svg';
 import messagesIcon from './../../assets/img/messages.svg';
 import usersIcon from './../../assets/img/users.svg';
 import Friend from "./friends/Friend";
+import Loading from "../loading/Loading";
 
 const Navigation = (props) => {
     let friends = props.friends.map(friend => <Friend
         key={friend.id}
         id={friend.id}
         name={friend.name}
-        url={friend.url}
+        url={friend.photos.large}
     />)
 
     return (
@@ -48,7 +49,7 @@ const Navigation = (props) => {
                 </div>
 
                 <div className={navigationClasses.friends}>
-                    {friends}
+                    {props.isLoading ? <Loading /> : friends}
                 </div>
 
             </div>

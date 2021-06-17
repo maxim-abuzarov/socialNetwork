@@ -7,6 +7,18 @@
     display: flex;
 }
 
+.profileLoading {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    margin-bottom: 20px;
+    height: 352px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .photo img {
     content: '';
     width: 300px;

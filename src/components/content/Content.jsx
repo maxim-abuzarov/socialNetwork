@@ -2,11 +2,11 @@ import React from 'react';
 import Profile from "./profile/Profile";
 import PostsContainer from "./posts/PostsContainer";
 
-const Content = () => {
+const Content = (props) => {
     return (
         <aside>
 
-            <Profile />
+            <Profile profile={props.profile}/>
 
             <PostsContainer />
 

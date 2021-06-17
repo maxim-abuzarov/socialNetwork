@@ -1,15 +1,31 @@
-import avatar from './../../assets/img/unknownUser.jpeg';
+const GET_FRIENDS = 'GET-FRIENDS';
+const TOGGLE_IS_LOADING = 'TOGGLE-IS-LOADING';
 
 let initialState = {
-    friendsData: [
-        {id: 1, name: 'Maxim', url: avatar},
-        {id: 2, name: 'Oleg', url: avatar},
-        {id: 3, name: 'Yury', url: avatar},
-    ],
+    friends: [],
+    isLoading: false,
 }
 
-const asideReducer = (state = initialState) => {
-    return state;
+const asideReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_FRIENDS:
+            return {
+                ...state,
+                friends: action.friends,
+            }
+
+        case TOGGLE_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.isLoading,
+            }
+
+        default:
+            return state;
+    }
 }
+
+export const getFriends = (friends) => ({type: GET_FRIENDS, friends})
+export const toggleIsLoading = (isLoading) => ({type: TOGGLE_IS_LOADING, isLoading})
 
 export default asideReducer;
