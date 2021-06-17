@@ -3,6 +3,7 @@ import usersClasses from "./users.module.css";
 import {NavLink} from "react-router-dom";
 import avatar from "../../assets/img/unknownUser.jpeg";
 import Loading from "../loading/Loading";
+import * as axios from "axios";
 
 const Users = (props) => {
     // count quantity of pages
@@ -52,9 +53,41 @@ const Users = (props) => {
 
                         <div className={usersClasses.button}>
                             {user.followed
-                                ? <button onClick={() => {props.unfollow(user.id)} } className={usersClasses.followed}>Followed</button>
+                                ? <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
+                                    props.toggleFollowingProgress(true, user.id)
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                        withCredentials: true,
+                                        headers: {
+                                            'API-KEY': 'a60e2925-9e48-4e88-a8f4-0ca5f14206c3'
+                                        },
+                                    })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.unfollow(user.id)
+                                            }
+                                            props.toggleFollowingProgress(false, user.id)
+                                        });
 
-                                : <button onClick={() => {props.follow(user.id)} }>Follow</button>
+
+                                }} className={usersClasses.followed}>Followed</button>
+
+                                : <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
+                                    props.toggleFollowingProgress(true, user.id)
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                        withCredentials: true,
+                                        headers: {
+                                            'API-KEY': 'a60e2925-9e48-4e88-a8f4-0ca5f14206c3'
+                                        }
+                                    })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0) {
+                                                props.follow(user.id)
+                                            }
+                                            props.toggleFollowingProgress(false, user.id)
+                                        });
+
+
+                                }}>Follow</button>
                             }
                         </div>
 

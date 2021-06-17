@@ -8,7 +8,7 @@ const Messages = (props) => {
         key={friend.id}
         name={friend.name}
         id={friend.id}
-        url={friend.url}
+        url={friend.photos.large}
     />)
 
     let messages = props.messages.map(message => <Message
