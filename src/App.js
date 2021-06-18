@@ -6,6 +6,7 @@ import NavigationContainer from "./components/navigation/NavigationContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import ContentContainer from "./components/content/ContentContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
+import Login from "./components/login/Login";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path='/profile/:userId?' render={ () => <ContentContainer /> }/>
                 <Route path='/messages' render={ () => <MessagesContainer /> }/>
                 <Route path='/users' render={ () => <UsersContainer /> }/>
+                <Route path='/login' render={ () => <Login /> }/>
             </div>
             <Footer />
         </div>

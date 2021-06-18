@@ -1,3 +1,5 @@
+import {usersAPI} from "../../api/api";
+
 const GET_FRIENDS = 'GET-FRIENDS';
 const TOGGLE_IS_LOADING = 'TOGGLE-IS-LOADING';
 
@@ -27,5 +29,18 @@ const asideReducer = (state = initialState, action) => {
 
 export const getFriends = (friends) => ({type: GET_FRIENDS, friends})
 export const toggleIsLoading = (isLoading) => ({type: TOGGLE_IS_LOADING, isLoading})
+
+export const getFriendsList = () => {
+
+    return (dispatch) => {
+            dispatch(toggleIsLoading(true));
+
+            usersAPI.getFriends()
+                .then(data => {
+                    dispatch(toggleIsLoading(false));
+                    dispatch(getFriends(data.items));
+                });
+    }
+}
 
 export default asideReducer;

@@ -6,7 +6,7 @@ const Content = (props) => {
     return (
         <aside>
 
-            <Profile profile={props.profile}/>
+            <Profile profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
 
             <PostsContainer />
 
