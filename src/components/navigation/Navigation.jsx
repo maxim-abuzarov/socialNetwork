@@ -49,7 +49,12 @@ const Navigation = (props) => {
                 </div>
 
                 <div className={navigationClasses.friends}>
-                    {props.isLoading ? <Loading /> : friends}
+                    {props.isLoading
+                        ? <Loading />
+                        : friends.length !== 0
+                            ? friends
+                            : 'Follow somebody'
+                    }
                 </div>
 
             </div>
