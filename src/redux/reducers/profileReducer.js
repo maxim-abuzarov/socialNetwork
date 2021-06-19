@@ -2,13 +2,11 @@ import avatar from './../../assets/img/unknownUser.jpeg';
 import {profileAPI} from "../../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 
 let initialState = {
     postsData: [],
-    newPostText: '',
     profile: null,
     status: '',
 }
@@ -21,19 +19,12 @@ const profileReducer = (state = initialState, action) => {
                 author: 'Maxim Abuzarov',
                 date: '15 June 2021',
                 title: 'Post #4',
-                text: state.newPostText,
+                text: action.newPostText,
                 url: avatar,
             };
             return {
                 ...state,
                 postsData: [...state.postsData, newPost],
-                newPostText: '',
-            }
-
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText,
             }
 
         case SET_USER_PROFILE:
@@ -53,8 +44,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = () => ({type: ADD_POST})
-export const updateNewPostText = (newText) => ({type: UPDATE_NEW_POST_TEXT, newText})
+export const addPost = (newPostText) => ({type: ADD_POST, newPostText})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 

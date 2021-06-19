@@ -5,7 +5,7 @@ import profileIcon from './../../assets/img/profile.svg';
 import messagesIcon from './../../assets/img/messages.svg';
 import usersIcon from './../../assets/img/users.svg';
 import Friend from "./friends/Friend";
-import Loading from "../loading/Loading";
+import Loading from "../common/loading/Loading";
 
 const Navigation = (props) => {
     let friends = props.friends.map(friend => <Friend

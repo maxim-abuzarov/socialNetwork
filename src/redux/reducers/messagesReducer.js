@@ -1,9 +1,7 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     messagesData: [],
-    newMessageText: '',
 }
 
 const messagesReducer = (state = initialState, action) => {
@@ -11,18 +9,11 @@ const messagesReducer = (state = initialState, action) => {
         case SEND_MESSAGE:
             let newMessage = {
                 id: 4,
-                message: state.newMessageText
+                message: action.newMessageText
             };
             return {
                 ...state,
-                newMessageText: '',
                 messagesData: [...state.messagesData, newMessage],
-            }
-
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newText
             }
 
         default:
@@ -30,8 +21,6 @@ const messagesReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessage = () => ({type: SEND_MESSAGE})
-
-export const updateNewMessageText = (newText) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText})
+export const sendMessage = (newMessageText) => ({type: SEND_MESSAGE, newMessageText})
 
 export default messagesReducer;

@@ -2,6 +2,9 @@ import React from 'react';
 import messagesClasses from './messages.module.css';
 import Message from "./message/Message";
 import Friend from "./friend/Friend";
+import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../common/formsControl/FormsControl";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 
 const Messages = (props) => {
     let friends = props.friends.map(friend => <Friend
@@ -16,13 +19,8 @@ const Messages = (props) => {
         message={message.message}
     />)
 
-    let sendMessage = () => {
-        props.sendMessage();
-    }
-
-    let onMessageChange = (e) => {
-        let newText = e.target.value;
-        props.updateNewMessageText(newText);
+    let addNewMessage = (values) => {
+        props.sendMessage(values.newMessageText)
     }
 
     return (
@@ -50,12 +48,9 @@ const Messages = (props) => {
                 <div className={messagesClasses.write}>
 
                     <div className={messagesClasses.writeMessage}>
-                        <textarea
-                            placeholder='Write message to your friend'
-                            onChange={onMessageChange}
-                            value={props.newMessageText}
-                        />
-                        <button onClick={sendMessage}>Send</button>
+
+                        <AddMessageFormRedux onSubmit={addNewMessage} />
+
                     </div>
 
                 </div>
@@ -65,5 +60,18 @@ const Messages = (props) => {
         </div>
     );
 };
+
+const maxLength300 = maxLengthCreator(300)
+
+const AddMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={Textarea} validate={[requiredField, maxLength300]} name='newMessageText' placeholder='Write message to your friend' />
+            <button>Send</button>
+        </form>
+    )
+}
+
+const AddMessageFormRedux = reduxForm({form: 'messagesAddMessageForm'})(AddMessageForm)
 
 export default Messages;

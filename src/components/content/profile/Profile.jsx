@@ -1,7 +1,7 @@
 import React from 'react';
 import profileClasses from './profile.module.css';
 import avatar from './../../../assets/img/unknownUser.jpeg';
-import Loading from "../../loading/Loading";
+import Loading from "../../common/loading/Loading";
 import ProfileStatus from "./status/ProfileStatus";
 
 const Profile = (props) => {

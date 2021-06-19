@@ -2,7 +2,7 @@ import React from 'react';
 import usersClasses from "./users.module.css";
 import {NavLink} from "react-router-dom";
 import avatar from "../../assets/img/unknownUser.jpeg";
-import Loading from "../loading/Loading";
+import Loading from "../common/loading/Loading";
 
 const Users = (props) => {
     // count quantity of pages
