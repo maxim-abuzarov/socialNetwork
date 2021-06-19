@@ -6,6 +6,7 @@ import {requiredField} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login, logout} from "../../redux/reducers/authReducer";
 import {Redirect} from "react-router-dom";
+import formControlClasses from './../common/formsControl/formscontol.module.css';
 
 const LoginForm = (props) => {
     return (
@@ -23,6 +24,10 @@ const LoginForm = (props) => {
                 <Field component={Input} name='rememberMe' type='checkbox' id='check'/>
                 <label htmlFor="check">Remember me</label>
             </div>
+
+            {props.error
+                && <div className={formControlClasses.formSummaryError}> {props.error} </div>
+            }
 
             <div className={loginClasses.button}>
                 <button>Submit</button>
