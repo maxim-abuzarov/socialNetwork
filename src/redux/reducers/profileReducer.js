@@ -15,10 +15,10 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
-                id: 4,
+                id: 1,
                 author: 'Maxim Abuzarov',
                 date: '15 June 2021',
-                title: 'Post #4',
+                title: 'Post #1',
                 text: action.newPostText,
                 url: avatar,
             };
