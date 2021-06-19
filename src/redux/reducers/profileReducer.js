@@ -8,7 +8,7 @@ const SET_STATUS = 'SET-STATUS';
 let initialState = {
     postsData: [],
     profile: null,
-    status: '',
+    status: null,
 }
 
 const profileReducer = (state = initialState, action) => {
