@@ -11,11 +11,23 @@ const Profile = (props) => {
         </div>
     }
 
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div className={profileClasses.profile}>
 
             <div className={profileClasses.photo}>
                 <img src={props.profile.photos.large ? props.profile.photos.large : avatar} alt="Profile avatar"/>
+                {props.isOwner
+                && <div className={profileClasses.upload}>
+                        <button>Add photo</button>
+                        <input type="file" onChange={onMainPhotoSelected}></input>
+                   </div>
+                }
             </div>
 
             <div className={profileClasses.info}>
