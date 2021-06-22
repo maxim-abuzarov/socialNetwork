@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import usersClasses from "./users.module.css";
 import {NavLink} from "react-router-dom";
 import avatar from "../../assets/img/unknownUser.jpeg";
@@ -6,7 +6,14 @@ import Loading from "../common/loading/Loading";
 
 const Users = (props) => {
     // count quantity of pages
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+
+    // pagination
+    const portionSize = 15;
+    const portionCount = Math.ceil(pagesCount / portionSize);
+    const [portionNumber, setPortionNumber] = useState(1);
+    const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+    const rightPortionPageNumber = portionNumber * portionSize;
 
     let pages = [];
     for (let i=1; i <= pagesCount; i++) {
@@ -20,7 +27,14 @@ const Users = (props) => {
 
             <div className={props.isLoading ? usersClasses.pagesLoading : usersClasses.pages}>
 
-                {pages.map(page => {
+                {portionNumber > 1 &&
+                <button className={usersClasses.page} onClick={() => {setPortionNumber(portionNumber - 1) }}>&lt;
+                </button>
+                }
+
+                {pages
+                    .filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
+                    .map(page => {
                     return <div
                         key={page}
                         className={props.currentPage === page
@@ -29,6 +43,11 @@ const Users = (props) => {
                         onClick={ () => {props.onPageChanged(page)} }
                     >{page}</div>
                 })}
+
+                {portionCount > portionNumber &&
+                <button className={usersClasses.page} onClick={() => { setPortionNumber(portionNumber + 1) }}>&gt;
+                </button>
+                }
 
             </div>
 

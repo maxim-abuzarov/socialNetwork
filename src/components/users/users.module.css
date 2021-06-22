@@ -76,10 +76,10 @@
     margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     overflow: hidden;
-    height: 57px;
+    height: 70px;
 }
 
 .pagesLoading {
@@ -91,8 +91,8 @@
     border: 1px solid rgb(240, 240, 240);
     padding: 12px;
     transition: all .2s ease-in-out;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
     margin-bottom: 10px;
     display: flex;
@@ -110,8 +110,8 @@
     border: 1px solid rgb(240, 240, 240);
     padding: 12px;
     transition: all .2s ease-in-out;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
     margin-bottom: 10px;
     display: flex;

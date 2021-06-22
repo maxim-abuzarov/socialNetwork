@@ -32,14 +32,13 @@ export const toggleIsLoading = (isLoading) => ({type: TOGGLE_IS_LOADING, isLoadi
 
 export const getFriendsList = () => {
 
-    return (dispatch) => {
-            dispatch(toggleIsLoading(true));
+    return async (dispatch) => {
+        dispatch(toggleIsLoading(true));
 
-            usersAPI.getFriends()
-                .then(data => {
-                    dispatch(toggleIsLoading(false));
-                    dispatch(getFriends(data.items));
-                });
+        const data = await usersAPI.getFriends();
+
+        dispatch(toggleIsLoading(false));
+        dispatch(getFriends(data.items));
     }
 }
 

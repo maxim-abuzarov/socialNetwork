@@ -3,7 +3,7 @@ import logo from './../../assets/img/logo.svg';
 import headerClasses from './header.module.css';
 import {NavLink} from "react-router-dom";
 
-const Header = (props) => {
+const Header = ({isAuth, login, logout}) => {
     return (
         <header className={headerClasses.header}>
 
@@ -14,8 +14,8 @@ const Header = (props) => {
             </div>
 
             <div className={headerClasses.login}>
-                {props.isAuth
-                    ? <h1>{props.login} - <button className={headerClasses.logout} onClick={props.logout}>Logout</button></h1>
+                {isAuth
+                    ? <h1>{login} - <button className={headerClasses.logout} onClick={logout}>Logout</button></h1>
                     : <NavLink to='/login'>Login</NavLink>
                 }
             </div>
