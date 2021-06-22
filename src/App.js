@@ -2,17 +2,19 @@ import './App.css'
 import {Route, withRouter} from 'react-router-dom';
 import React from "react";
 import Footer from "./components/footer/Footer";
-import MessagesContainer from "./components/messages/MessagesContainer";
 import NavigationContainer from "./components/navigation/NavigationContainer";
-import UsersContainer from "./components/users/UsersContainer";
 import ContentContainer from "./components/content/ContentContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
-import Login from "./components/login/Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {initializeApp} from "./redux/reducers/appReducer";
 import Loading from "./components/common/loading/Loading";
+import {initializeApp} from "./redux/reducers/appReducer";
+import {withSuspense} from "./hoc/withSuspense";
 
+// components for lazy loading
+const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'));
+const UsersContainer = React.lazy(() => import('./components/users/UsersContainer'));
+const LoginPage = React.lazy(() => import('./components/login/Login'));
 
 class App extends React.Component {
     componentDidMount() {
@@ -30,9 +32,9 @@ class App extends React.Component {
                 <NavigationContainer />
                 <div className='app-content'>
                     <Route path='/profile/:userId?' render={ () => <ContentContainer /> }/>
-                    <Route path='/messages' render={ () => <MessagesContainer /> }/>
-                    <Route path='/users' render={ () => <UsersContainer /> }/>
-                    <Route path='/login' render={ () => <Login /> }/>
+                    <Route path='/messages' render={withSuspense(MessagesContainer)}/>
+                    <Route path='/users' render={withSuspense(UsersContainer)}/>
+                    <Route path='/login' render={withSuspense(LoginPage)}/>
                 </div>
                 <Footer />
             </div>
