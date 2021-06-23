@@ -35,8 +35,8 @@ export const authAPI = {
         return instance.get(`auth/me`)
     },
 
-    login(email, password, rememberMe = false) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
+    login(email, password, rememberMe = false, captcha = null) {
+        return instance.post(`auth/login`, {email, password, rememberMe, captcha})
     },
 
     logout() {
@@ -67,4 +67,11 @@ export const profileAPI = {
     saveProfileData(profileData) {
         return instance.put(`profile`, profileData)
     },
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`);
+    },
+
 }
