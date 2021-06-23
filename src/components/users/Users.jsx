@@ -4,9 +4,18 @@ import {NavLink} from "react-router-dom";
 import avatar from "../../assets/img/unknownUser.jpeg";
 import Loading from "../common/loading/Loading";
 
-const Users = (props) => {
+const Users = ({
+                   totalUsersCount,
+                   pageSize,
+                   isLoading,
+                   currentPage,
+                   onPageChanged,
+                   users,
+                   followingProgress,
+                   follow,
+                   unfollow }) => {
     // count quantity of pages
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    const pagesCount = Math.ceil(totalUsersCount / pageSize)
 
     // pagination
     const portionSize = 15;
@@ -23,9 +32,9 @@ const Users = (props) => {
     return (
         <div className={usersClasses.inner}>
 
-            {props.isLoading ? <Loading /> : null}
+            {isLoading ? <Loading /> : null}
 
-            <div className={props.isLoading ? usersClasses.pagesLoading : usersClasses.pages}>
+            <div className={isLoading ? usersClasses.pagesLoading : usersClasses.pages}>
 
                 {portionNumber > 1 &&
                 <button className={usersClasses.page} onClick={() => {setPortionNumber(portionNumber - 1) }}>&lt;
@@ -37,10 +46,10 @@ const Users = (props) => {
                     .map(page => {
                     return <div
                         key={page}
-                        className={props.currentPage === page
+                        className={currentPage === page
                             ? usersClasses.pageSelected
                             : usersClasses.page }
-                        onClick={ () => {props.onPageChanged(page)} }
+                        onClick={ () => {onPageChanged(page)} }
                     >{page}</div>
                 })}
 
@@ -51,9 +60,9 @@ const Users = (props) => {
 
             </div>
 
-            {props.users
+            {users
                 .map(user =>
-                    <div key={user.id} className={props.isLoading ? usersClasses.usersLoading : usersClasses.user}>
+                    <div key={user.id} className={isLoading ? usersClasses.usersLoading : usersClasses.user}>
 
                         <div className={usersClasses.name}>
                             <h1>{user.name.toLowerCase()}</h1>
@@ -71,12 +80,12 @@ const Users = (props) => {
 
                         <div className={usersClasses.button}>
                             {user.followed
-                                ? <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
-                                    props.unfollow(user.id);
+                                ? <button disabled={followingProgress.some(id => id === user.id)} onClick={() => {
+                                    unfollow(user.id);
                                 }} className={usersClasses.followed}>Followed</button>
 
-                                : <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
-                                    props.follow(user.id)
+                                : <button disabled={followingProgress.some(id => id === user.id)} onClick={() => {
+                                    follow(user.id)
                                 }}>Follow</button>
                             }
                         </div>

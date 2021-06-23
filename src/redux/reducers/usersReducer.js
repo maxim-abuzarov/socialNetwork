@@ -1,4 +1,5 @@
 import {usersAPI} from "../../api/api";
+import {getFriendsList} from "./asideReducer";
 
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
@@ -109,6 +110,7 @@ export const follow = (userId) => {
 
         if (response.data.resultCode === 0) {
             dispatch(followSuccess(userId))
+            dispatch(getFriendsList())
         }
         dispatch(toggleFollowingProgress(false, userId))
     }
@@ -123,6 +125,7 @@ export const unfollow = (userId) => {
 
         if (response.data.resultCode === 0) {
             dispatch(unfollowSuccess(userId))
+            dispatch(getFriendsList())
         }
         dispatch(toggleFollowingProgress(false, userId))
     }

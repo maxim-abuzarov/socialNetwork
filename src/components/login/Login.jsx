@@ -8,9 +8,9 @@ import {login, logout} from "../../redux/reducers/authReducer";
 import {Redirect} from "react-router-dom";
 import formControlClasses from './../common/formsControl/formscontol.module.css';
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             
             <div className={loginClasses.login}>
                 <Field component={Input} validate={[requiredField]} name='email' placeholder='email' type='email' />
@@ -25,8 +25,8 @@ const LoginForm = (props) => {
                 <label htmlFor="check">Remember me</label>
             </div>
 
-            {props.error
-                && <div className={formControlClasses.formSummaryError}> {props.error} </div>
+            {error
+                && <div className={formControlClasses.formSummaryError}> {error} </div>
             }
 
             <div className={loginClasses.button}>
@@ -41,12 +41,12 @@ const LoginReduxForm = reduxForm({
     form: 'login'
 }) (LoginForm)
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to='/profile' />
     }
 

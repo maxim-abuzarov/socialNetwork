@@ -9,7 +9,9 @@ const ProfileStatus = (props) => {
     }, [props.status])
 
     const activateEditMode = () => {
-        setEditMode(true);
+        if (props.isOwner) {
+            setEditMode(true);
+        }
     }
 
     const deactivateEditMode = () => {
@@ -24,7 +26,6 @@ const ProfileStatus = (props) => {
     const handleFocus = (e) => {
         e.target.select()
     }
-
 
     return (
         <div>

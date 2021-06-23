@@ -1,15 +1,15 @@
-import './App.css'
-import {Route, withRouter} from 'react-router-dom';
 import React from "react";
+import {compose} from "redux";
+import {Route, withRouter} from 'react-router-dom';
+import {connect} from "react-redux";
+import {initializeApp} from "./redux/reducers/appReducer";
+import {withSuspense} from "./hoc/withSuspense";
+import './App.css'
 import Footer from "./components/footer/Footer";
 import NavigationContainer from "./components/navigation/NavigationContainer";
 import ContentContainer from "./components/content/ContentContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
-import {connect} from "react-redux";
-import {compose} from "redux";
 import Loading from "./components/common/loading/Loading";
-import {initializeApp} from "./redux/reducers/appReducer";
-import {withSuspense} from "./hoc/withSuspense";
 
 // components for lazy loading
 const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'));

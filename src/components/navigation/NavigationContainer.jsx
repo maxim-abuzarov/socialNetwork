@@ -11,13 +11,18 @@ class NavigationContainer extends React.Component {
     render() {
         return <Navigation friends={this.props.friends} isLoading={this.props.isLoading} />
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.friends !== prevProps.friends) {
+
+        }
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
         friends: state.aside.friends,
         isLoading: state.aside.isLoading,
-
     }
 }
 

@@ -25,7 +25,7 @@
     height: 300px;
     border-radius: 10px;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: block;
 }
 
@@ -75,5 +75,142 @@
 .status {
     color: rgb(98, 109, 122);
     border-bottom: 1px solid rgb(240, 240, 240);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.data {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.button {
+    width: 98%;
+}
+
+.button button {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 7px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.button button:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.dataItem {
+    background-color: #fff;
+    width: 32%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.dataItemName,
+.dataItemCheck,
+.dataItemContacts{
+    background-color: #fff;
+    width: 98%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.dataItemContacts {
+    padding: 15px;
+}
+
+.dataItemName h1,
+.dataItemCheck h1,
+.dataItem h1,
+.dataItemContacts h1,
+.dataItemField h1 {
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.dataItemName p,
+.dataItemCheck p,
+.dataItem p {
+    font-size: 14px;
+    color: rgb(6, 150, 255);
+    margin-top: 10px;
+}
+
+.dataItemField{
+    background-color: #fff;
+    width: 49%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.dataItemContacts h1 {
+    margin-bottom: 10px;
+}
+
+.contacts {
+    display: flex;
+    width: 100%;
+    text-align: start;
+    align-items: center;
+}
+
+.contacts h2 {
+    font-size: 15px;
+    width: 50%;
+    font-weight: normal;
+}
+
+.contacts a {
+    width: 50%;
+    font-size: 14px;
+    text-decoration: none;
+    color: rgb(6, 150, 255);
+}
+
+.field {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    width: 100%;
+    resize: none;
+    text-align: center;
+    color: rgb(6, 150, 255);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.fieldText,
+.social {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    width: 100%;
+    resize: none;
+    height: 200px;
+    text-align: center;
+    color: rgb(6, 150, 255);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.social {
+    width: 300px;
+    resize: none;
+    height: 25px;
 }

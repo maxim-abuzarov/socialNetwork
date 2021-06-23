@@ -7,8 +7,8 @@ import usersIcon from './../../assets/img/users.svg';
 import Friend from "./friends/Friend";
 import Loading from "../common/loading/Loading";
 
-const Navigation = (props) => {
-    let friends = props.friends.map(friend => <Friend
+const Navigation = ({friends, isLoading}) => {
+    let friendsList = friends.map(friend => <Friend
         key={friend.id}
         id={friend.id}
         name={friend.name}
@@ -49,10 +49,10 @@ const Navigation = (props) => {
                 </div>
 
                 <div className={navigationClasses.friends}>
-                    {props.isLoading
+                    {isLoading
                         ? <Loading />
-                        : friends.length !== 0
-                            ? friends
+                        : friendsList.length !== 0
+                            ? friendsList
                             : 'Follow somebody'
                     }
                 </div>
