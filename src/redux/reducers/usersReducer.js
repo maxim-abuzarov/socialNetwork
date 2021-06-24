@@ -1,5 +1,6 @@
 import {usersAPI} from "../../api/api";
 import {getFriendsList} from "./asideReducer";
+import {catchError} from "./errorReducer";
 
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
@@ -88,46 +89,58 @@ export const followSuccess = (userId) => ({type: FOLLOW, userId})
 export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId})
 
 export const getUsers = (currentPage, pageSize) => {
-
     return async (dispatch) => {
-        dispatch(toggleIsLoading(true));
-        dispatch(setCurrentPage(currentPage))
+        try {
+            dispatch(toggleIsLoading(true));
+            dispatch(setCurrentPage(currentPage))
 
-        const data = await usersAPI.getUsers(currentPage, pageSize);
+            const data = await usersAPI.getUsers(currentPage, pageSize);
 
-        dispatch(toggleIsLoading(false));
-        dispatch(setUsers(data.items));
-        dispatch(setTotalUsersCount(data.totalCount));
+            dispatch(toggleIsLoading(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        } catch (e) {
+            const message = e.message
+            dispatch(catchError(true, message))
+        }
     }
 }
 
 export const follow = (userId) => {
-
     return async (dispatch) => {
-        dispatch(toggleFollowingProgress(true, userId));
+        try {
+            dispatch(toggleFollowingProgress(true, userId));
 
-        const response = await usersAPI.follow(userId)
+            const response = await usersAPI.follow(userId)
 
-        if (response.data.resultCode === 0) {
-            dispatch(followSuccess(userId))
-            dispatch(getFriendsList())
+            if (response.data.resultCode === 0) {
+                dispatch(followSuccess(userId))
+                dispatch(getFriendsList())
+            }
+            dispatch(toggleFollowingProgress(false, userId))
+        } catch (e) {
+            const message = e.message
+            dispatch(catchError(true, message))
         }
-        dispatch(toggleFollowingProgress(false, userId))
     }
 }
 
 export const unfollow = (userId) => {
-
     return async (dispatch) => {
-        dispatch(toggleFollowingProgress(true, userId));
+        try {
+            dispatch(toggleFollowingProgress(true, userId));
 
-        const response = await usersAPI.unfollow(userId);
+            const response = await usersAPI.unfollow(userId);
 
-        if (response.data.resultCode === 0) {
-            dispatch(unfollowSuccess(userId))
-            dispatch(getFriendsList())
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId))
+                dispatch(getFriendsList())
+            }
+            dispatch(toggleFollowingProgress(false, userId))
+        } catch (e) {
+            const message = e.message
+            dispatch(catchError(true, message))
         }
-        dispatch(toggleFollowingProgress(false, userId))
     }
 }
 

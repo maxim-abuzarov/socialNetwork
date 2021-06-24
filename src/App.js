@@ -1,6 +1,6 @@
 import React from "react";
 import {compose} from "redux";
-import {Route, withRouter} from 'react-router-dom';
+import {Redirect, Route, withRouter, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/reducers/appReducer";
 import {withSuspense} from "./hoc/withSuspense";
@@ -10,6 +10,7 @@ import NavigationContainer from "./components/navigation/NavigationContainer";
 import ContentContainer from "./components/content/ContentContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
 import Loading from "./components/common/loading/Loading";
+import Error from "./components/common/error/Error";
 
 // components for lazy loading
 const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'));
@@ -29,12 +30,17 @@ class App extends React.Component {
         return (
             <div className='app-wrapper'>
                 <HeaderContainer />
+                {this.props.error && <Error errorMessage={this.props.errorMessage}/>}
                 <NavigationContainer />
                 <div className='app-content'>
-                    <Route path='/profile/:userId?' render={ () => <ContentContainer /> }/>
-                    <Route path='/messages' render={withSuspense(MessagesContainer)}/>
-                    <Route path='/users' render={withSuspense(UsersContainer)}/>
-                    <Route path='/login' render={withSuspense(LoginPage)}/>
+                    <Switch>
+                        <Route exact path='/' render={ () => <Redirect to='/profile' />} />
+                        <Route path='/profile/:userId?' render={ () => <ContentContainer /> }/>
+                        <Route path='/messages' render={withSuspense(MessagesContainer)}/>
+                        <Route path='/users' render={withSuspense(UsersContainer)}/>
+                        <Route path='/login' render={withSuspense(LoginPage)}/>
+                        <Route path='*' render={ () => <div className='page404'>404 :(</div>}/>
+                    </Switch>
                 </div>
                 <Footer />
             </div>
@@ -45,6 +51,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
     return {
         initialized: state.app.initialized,
+        error: state.error.error,
+        errorMessage: state.error.errorMessage,
     }
 }
 
