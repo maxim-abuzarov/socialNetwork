@@ -1,29 +1,35 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react'
 
-const ProfileStatus = (props) => {
-    const [editMode, setEditMode] = useState(false);
-    const [status, setStatus] = useState(props.status);
+type PropsType = {
+    status: string
+    isOwner: boolean
+    updateStatus: (status: string) => void
+}
+
+const ProfileStatus: FC<PropsType> = (props) => {
+    const [editMode, setEditMode] = useState(false)
+    const [status, setStatus] = useState(props.status)
 
     useEffect(() => {
-        setStatus(props.status);
+        setStatus(props.status)
     }, [props.status])
 
     const activateEditMode = () => {
         if (props.isOwner) {
-            setEditMode(true);
+            setEditMode(true)
         }
     }
 
     const deactivateEditMode = () => {
-        setEditMode(false);
-        props.updateStatus(status);
+        setEditMode(false)
+        props.updateStatus(status)
     }
 
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
 
-    const handleFocus = (e) => {
+    const handleFocus = (e: ChangeEvent<HTMLInputElement>) => {
         e.target.select()
     }
 
@@ -36,7 +42,7 @@ const ProfileStatus = (props) => {
                                  onChange={onStatusChange}
                                  value={status} />
                     </div>
-                :   <div onClick={activateEditMode} > {props.status
+                :   <div onClick={activateEditMode}> {props.status
                             ? props.status
                             : 'There could be a status here, but...'}
                     </div>
@@ -45,4 +51,4 @@ const ProfileStatus = (props) => {
     )
 }
 
-export default ProfileStatus;
+export default ProfileStatus
