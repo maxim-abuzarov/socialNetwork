@@ -5,7 +5,7 @@ import {BaseThunkType, InferActionTypes} from '../store'
 import {usersAPI} from '../../api/usersAPI'
 import {ResultCodes} from '../../api/api'
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 type ActionsTypes = InferActionTypes<typeof actions>
 type ThunkType = BaseThunkType<ActionsTypes | ReturnType<typeof action.catchError>>
 
