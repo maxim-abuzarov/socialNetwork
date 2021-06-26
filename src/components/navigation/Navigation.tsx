@@ -1,13 +1,19 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
-import navigationClasses from './navigation.module.css';
-import profileIcon from './../../assets/img/profile.svg';
-import messagesIcon from './../../assets/img/messages.svg';
-import usersIcon from './../../assets/img/users.svg';
-import Friend from "./friends/Friend";
-import Loading from "../common/loading/Loading";
+import React, {FC} from 'react'
+import {NavLink} from 'react-router-dom'
+import navigationClasses from './navigation.module.css'
+import profileIcon from './../../assets/img/profile.svg'
+import messagesIcon from './../../assets/img/messages.svg'
+import usersIcon from './../../assets/img/users.svg'
+import Friend from './friends/Friend'
+import Loading from '../common/loading/Loading'
+import {UserType} from '../../types/types'
 
-const Navigation = ({friends, isLoading}) => {
+type PropsTypes = {
+    friends: UserType[]
+    isLoading: boolean
+}
+
+const Navigation: FC<PropsTypes> = ({friends, isLoading}) => {
     let friendsList = friends.map(friend => <Friend
         key={friend.id}
         id={friend.id}
@@ -59,7 +65,7 @@ const Navigation = ({friends, isLoading}) => {
 
             </div>
         </nav>
-    );
-};
+    )
+}
 
-export default Navigation;
+export default Navigation

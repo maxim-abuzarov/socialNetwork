@@ -1,14 +1,14 @@
 import {InferActionTypes} from '../store'
 
 type InitialStateType = typeof initialState
-type MessagesType = {
+export type MessagesType = {
     id: number
     message: string
 }
 type ActionsTypes = InferActionTypes<typeof actions>
 
 const initialState = {
-    messagesData: [] as Array<MessagesType>
+    messagesData: [] as MessagesType[]
 }
 
 const messagesReducer = (state = initialState, action: ActionsTypes): InitialStateType => {

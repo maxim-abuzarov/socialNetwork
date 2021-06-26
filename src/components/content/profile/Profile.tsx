@@ -1,12 +1,31 @@
-import React, {useState} from 'react';
-import profileClasses from './profile.module.css';
-import avatar from './../../../assets/img/unknownUser.jpeg';
-import Loading from "../../common/loading/Loading";
-import ProfileStatus from "./status/ProfileStatus";
-import ProfileInfoForm from "./info/ProfileInfoForm";
+import React, {ChangeEvent, FC, useState} from 'react'
+import profileClasses from './profile.module.css'
+import avatar from './../../../assets/img/unknownUser.jpeg'
+import Loading from '../../common/loading/Loading'
+import ProfileStatus from './status/ProfileStatus'
+import ProfileInfoForm from './info/ProfileInfoForm'
+import {ProfilePropsType} from '../Content'
+import {ContactsType, ProfileType} from '../../../types/types'
 
-const Profile = ({profile, savePhoto, saveProfileData, isOwner, status, updateStatus}) => {
-    const [editMode, setEditMode] = useState(false);
+type ProfileInfoType = {
+    profile: ProfileType
+    isOwner: boolean
+    goToEditMode: () => void
+}
+type ContactsPropsType = {
+    contactTitle: string
+    contactValue: string
+}
+
+const Profile: FC<ProfilePropsType> = ({
+                                           profile,
+                                           savePhoto,
+                                           saveProfileData,
+                                           isOwner,
+                                           status,
+                                           updateStatus
+}) => {
+    const [editMode, setEditMode] = useState(false)
 
     if (!profile) {
         return <div className={profileClasses.profileLoading}>
@@ -14,16 +33,16 @@ const Profile = ({profile, savePhoto, saveProfileData, isOwner, status, updateSt
         </div>
     }
 
-    const onMainPhotoSelected = (e) => {
-        if (e.target.files.length) {
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
             savePhoto(e.target.files[0])
         }
     }
 
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: ProfileType) => {
         saveProfileData(formData).then(() => {
             setEditMode(false)
-        });
+        })
     }
 
     return (
@@ -54,10 +73,10 @@ const Profile = ({profile, savePhoto, saveProfileData, isOwner, status, updateSt
             </div>
 
         </div>
-    );
-};
+    )
+}
 
-const ProfileInfo = ({profile, isOwner, goToEditMode}) => {
+const ProfileInfo: FC<ProfileInfoType> = ({profile, isOwner, goToEditMode}) => {
     return (
         <div className={profileClasses.data}>
             <div className={profileClasses.dataItem}>
@@ -76,9 +95,14 @@ const ProfileInfo = ({profile, isOwner, goToEditMode}) => {
             </div>
 
             <div className={profileClasses.dataItemContacts}>
-                <h1>Contacts:</h1> {Object.keys(profile.contacts).map(key => {
-                return <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key]} />
-            })}
+                <h1>Contacts:</h1>
+                {Object
+                    .keys(profile.contacts)
+                    .map((key => {return <Contacts
+                        key={key}
+                        contactTitle={key}
+                        contactValue={profile.contacts[key as keyof ContactsType]} />}))
+                }
             </div>
 
             {isOwner &&
@@ -91,7 +115,7 @@ const ProfileInfo = ({profile, isOwner, goToEditMode}) => {
     )
 }
 
-const Contacts = ({contactTitle, contactValue}) => {
+const Contacts: FC<ContactsPropsType> = ({contactTitle, contactValue}) => {
     return (
         <div>
             {contactValue && <div className={profileClasses.contacts}>
@@ -106,4 +130,4 @@ const Contacts = ({contactTitle, contactValue}) => {
     )
 }
 
-export default Profile;
+export default Profile

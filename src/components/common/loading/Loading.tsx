@@ -1,7 +1,7 @@
-import React from 'react';
-import loadingClasses from './loading.module.css';
+import React, {FC} from 'react'
+import loadingClasses from './loading.module.css'
 
-const Loading = () => {
+const Loading: FC = () => {
     return (
         <div className={loadingClasses.loading}>
             <div></div>
@@ -13,7 +13,7 @@ const Loading = () => {
             <div></div>
             <div></div>
         </div>
-    );
-};
+    )
+}
 
-export default Loading;
+export default Loading

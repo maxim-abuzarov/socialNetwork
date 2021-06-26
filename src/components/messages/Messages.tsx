@@ -1,12 +1,21 @@
-import React from 'react';
-import messagesClasses from './messages.module.css';
-import Message from "./message/Message";
-import Friend from "./friend/Friend";
-import {Field, reduxForm, reset} from "redux-form";
-import {Textarea} from "../common/formsControl/FormsControl";
-import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import React, {FC} from 'react'
+import messagesClasses from './messages.module.css'
+import Message from './message/Message'
+import Friend from './friend/Friend'
+import {UserType} from '../../types/types'
+import {MessagesType} from '../../redux/reducers/messagesReducer'
+import {AddMessageForm} from './addMessageForm/addMessageForm'
 
-const Messages = ({friends, messages, sendMessage}) => {
+type PropsType = {
+    friends: UserType[]
+    messages: MessagesType[]
+    sendMessage: (newMessageText: string) => void
+}
+export type NewMessageValuesFormType = {
+    newMessageText: string
+}
+
+const Messages: FC<PropsType> = ({friends, messages, sendMessage}) => {
     let friendsList = friends.map(friend => <Friend
         key={friend.id}
         name={friend.name}
@@ -19,13 +28,12 @@ const Messages = ({friends, messages, sendMessage}) => {
         message={message.message}
     />)
 
-    let addNewMessage = (values) => {
+    let addNewMessage = (values: NewMessageValuesFormType) => {
         sendMessage(values.newMessageText)
     }
 
     return (
         <div className={messagesClasses.messages}>
-
             <div className={messagesClasses.leftCol}>
 
                 <div>
@@ -49,34 +57,15 @@ const Messages = ({friends, messages, sendMessage}) => {
                 </div>
 
                 <div className={messagesClasses.write}>
-
                     <div className={messagesClasses.writeMessage}>
-
-                        <AddMessageFormRedux onSubmit={addNewMessage} />
-
+                        <AddMessageForm onSubmit={addNewMessage} />
                     </div>
-
                 </div>
 
             </div>
 
         </div>
-    );
-};
-
-const maxLength300 = maxLengthCreator(300)
-
-const AddMessageForm = ({handleSubmit}) => {
-    return (
-        <form onSubmit={handleSubmit}>
-            <Field component={Textarea} validate={[requiredField, maxLength300]} name='newMessageText' placeholder='Write message to your friend' />
-            <button>Send</button>
-        </form>
     )
 }
 
-const afterSubmit = (result, dispatch) => dispatch(reset('messagesAddMessageForm'));
-
-const AddMessageFormRedux = reduxForm({form: 'messagesAddMessageForm', onSubmitSuccess: afterSubmit})(AddMessageForm)
-
-export default Messages;
+export default Messages

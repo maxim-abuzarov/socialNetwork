@@ -4,7 +4,7 @@ import usersClasses from '../../users/users.module.css'
 type PropsType = {
     totalItemsCount: number
     pageSize: number
-    currentPage: number
+    currentPage?: number
     portionSize?: number
     isLoading: boolean
     onPageChanged: (pageNumber: number) => void

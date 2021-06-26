@@ -1,7 +1,15 @@
-import React from 'react';
-import postClasses from './post.module.css';
+import React, {FC} from 'react'
+import postClasses from './post.module.css'
 
-const Post = ({url, author, date, title, text}) => {
+type PropsType = {
+    url: string | undefined
+    author: string
+    date: string
+    title: string
+    text: string
+}
+
+const Post: FC<PropsType> = ({url, author, date, title, text}) => {
     return (
         <div className={postClasses.post}>
             <div className={postClasses.header}>
@@ -22,7 +30,7 @@ const Post = ({url, author, date, title, text}) => {
                 <p>{text}</p>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Post;
+export default Post

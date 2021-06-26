@@ -1,9 +1,19 @@
-import React from 'react';
-import logo from './../../assets/img/logo.svg';
-import headerClasses from './header.module.css';
-import {NavLink} from "react-router-dom";
+import React from 'react'
+import logo from './../../assets/img/logo.svg'
+import headerClasses from './header.module.css'
+import {NavLink} from 'react-router-dom'
+import { FC } from 'react'
 
-const Header = ({isAuth, login, logout}) => {
+export type MapPropsTypes = {
+    isAuth: boolean
+    login: string | null
+    logout: () => void
+}
+export type DispatchPropsTypes = {
+    logout: () => void
+}
+
+const Header: FC<MapPropsTypes & DispatchPropsTypes> = ({isAuth, login, logout}) => {
     return (
         <header className={headerClasses.header}>
 
@@ -21,7 +31,7 @@ const Header = ({isAuth, login, logout}) => {
             </div>
 
         </header>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header

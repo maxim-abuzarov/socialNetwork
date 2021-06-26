@@ -1,9 +1,15 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
-import friendClasses from './friend.module.css';
-import avatar from './../../../assets/img/unknownUser.jpeg';
+import React, {FC} from 'react'
+import {NavLink} from 'react-router-dom'
+import friendClasses from './friend.module.css'
+import avatar from './../../../assets/img/unknownUser.jpeg'
 
-const Friend = ({id, name, url}) => {
+type PropsType = {
+    id: number
+    name: string
+    url: string | null
+}
+
+const Friend: FC<PropsType> = ({id, name, url}) => {
     return (
         <NavLink to={'/profile/' + id} className={friendClasses.friend}>
 
@@ -20,7 +26,7 @@ const Friend = ({id, name, url}) => {
             </div>
 
         </NavLink>
-    );
-};
+    )
+}
 
-export default Friend;
+export default Friend

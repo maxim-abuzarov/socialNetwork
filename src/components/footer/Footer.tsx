@@ -1,9 +1,9 @@
-import React from 'react';
-import footerClasses from './footer.module.css';
+import React, {FC} from 'react'
+import footerClasses from './footer.module.css'
 import vkIcon from './../../assets/img/vk.svg'
-import githubIcon from './../../assets/img/github.svg';
+import githubIcon from './../../assets/img/github.svg'
 
-const Footer = () => {
+const Footer: FC = () => {
     return (
         <footer className={footerClasses.footer}>
 
@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
 
         </footer>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer

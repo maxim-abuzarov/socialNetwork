@@ -11,7 +11,7 @@ export const Textarea: FC<WrappedFieldProps> = ({input, meta, ...props}) => {
             {hasError && <span>{meta.error}</span>}
         </div>
     )
-};
+}
 
 export const Input: FC<WrappedFieldProps> = ({input, meta, ...props}) => {
     const hasError = meta.touched && meta.error
