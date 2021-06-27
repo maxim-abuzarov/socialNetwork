@@ -4,6 +4,8 @@ import Loading from '../common/loading/Loading'
 import Paginator from '../common/paginator/Paginator'
 import {UserType} from '../../types/types'
 import User from './User'
+import UsersSearchForm from './UsersSearchForm'
+import {FilterType} from '../../redux/reducers/usersReducer'
 
 type PropsType = {
     totalUsersCount: number
@@ -12,6 +14,7 @@ type PropsType = {
     users: UserType[]
     followingProgress: number[]
     isLoading: boolean
+    onFilterChanged: (filter: FilterType) => void
     onPageChanged: (pageNumber: number) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -26,7 +29,8 @@ const Users: FC<PropsType> = ({
                                   isLoading,
                                   onPageChanged,
                                   follow,
-                                  unfollow
+                                  unfollow,
+                                  onFilterChanged
 }) => {
     return (
         <div className={usersClasses.inner}>
@@ -39,6 +43,8 @@ const Users: FC<PropsType> = ({
                 onPageChanged={onPageChanged}
                 isLoading={isLoading}
             />
+
+            <UsersSearchForm onFilterChanged={onFilterChanged} />
 
             {users.map(user => {
                 return <User

@@ -76,7 +76,7 @@
     margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
     overflow: hidden;
     height: 70px;

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Users from './Users'
 import {
+    FilterType,
     follow,
     getUsers,
     unfollow,
@@ -12,6 +13,7 @@ import {
     getIsLoading,
     getPageSize,
     getTotalUsersCount,
+    getUsersFilter,
     getUsersInfo
 } from '../../redux/selectors/usersSelectors'
 import {UserType} from '../../types/types'
@@ -25,9 +27,10 @@ type MapPropsType = {
     currentPage: number
     isLoading: boolean
     followingProgress: number[]
+    filter: FilterType
 }
 type DispatchPropsType = {
-    getUsers: (currentPage: number, pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number, filter: FilterType) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
 }
@@ -35,11 +38,15 @@ type PropsType = MapPropsType & DispatchPropsType
 
 class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.filter)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.getUsers(pageNumber, this.props.pageSize, this.props.filter)
+    }
+
+    onFilterChanged = (filter: FilterType) => {
+        this.props.getUsers(1, this.props.pageSize, filter)
     }
 
     render() {
@@ -54,6 +61,7 @@ class UsersContainer extends React.Component<PropsType> {
                 onPageChanged={this.onPageChanged}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
+                onFilterChanged={this.onFilterChanged}
             />
         </>
     }
@@ -66,7 +74,8 @@ const mapStateToProps = (state: AppStateType): MapPropsType => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isLoading: getIsLoading(state),
-        followingProgress: getFollowingProgress(state)
+        followingProgress: getFollowingProgress(state),
+        filter: getUsersFilter(state)
     }
 }
 

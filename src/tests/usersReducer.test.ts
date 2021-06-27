@@ -43,7 +43,11 @@ beforeEach(() => {
 		isLoading: false,
 		pageSize: 12,
 		totalUsersCount: 0,
-		currentPage: 1
+		currentPage: 1,
+		filter: {
+			term: '',
+			friend: null as null | boolean
+		}
 	}
 })
 
