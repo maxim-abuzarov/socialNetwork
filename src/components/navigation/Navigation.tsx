@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 import navigationClasses from './navigation.module.css'
 import profileIcon from './../../assets/img/profile.svg'
@@ -6,14 +6,23 @@ import messagesIcon from './../../assets/img/messages.svg'
 import usersIcon from './../../assets/img/users.svg'
 import Friend from './friends/Friend'
 import Loading from '../common/loading/Loading'
-import {UserType} from '../../types/types'
+import {useDispatch, useSelector} from 'react-redux'
+import {getFriends, getIsLoading} from '../../redux/selectors/navigationSelectors'
+import {getFriendsList} from '../../redux/reducers/asideReducer'
 
-type PropsTypes = {
-    friends: UserType[]
-    isLoading: boolean
-}
+const Navigation: FC = () => {
+    const friends = useSelector(getFriends)
+    const isLoading = useSelector(getIsLoading)
 
-const Navigation: FC<PropsTypes> = ({friends, isLoading}) => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const getFriend = () => {
+            dispatch(getFriendsList())
+        }
+        dispatch(getFriend)
+    }, [dispatch])
+
     let friendsList = friends.map(friend => <Friend
         key={friend.id}
         id={friend.id}

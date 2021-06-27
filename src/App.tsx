@@ -6,7 +6,7 @@ import {initializeApp} from './redux/reducers/appReducer'
 import {withSuspense} from './hoc/withSuspense'
 import './App.css'
 import Footer from './components/footer/Footer'
-import NavigationContainer from './components/navigation/NavigationContainer'
+import Navigation from './components/navigation/Navigation'
 import ContentContainer from './components/content/ContentContainer'
 import HeaderContainer from './components/header/HeaderContainer'
 import Loading from './components/common/loading/Loading'
@@ -20,11 +20,11 @@ type DispatchPropsType = {
 
 // components for lazy loading
 const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'))
-const UsersContainer = React.lazy(() => import('./components/users/UsersContainer'))
+const Users = React.lazy(() => import('./components/users/Users'))
 const LoginPage = React.lazy(() => import('./components/login/Login'))
 
 const SuspendedMessagesPage = withSuspense(MessagesContainer)
-const SuspendedUsersPage = withSuspense(UsersContainer)
+const SuspendedUsersPage = withSuspense(Users)
 const SuspendedLoginPage = withSuspense(LoginPage)
 
 class App extends React.Component<MapPropsType & DispatchPropsType> {
@@ -41,7 +41,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
             <div className='app-wrapper'>
                 <HeaderContainer />
                 {this.props.error && <Error errorMessage={this.props.errorMessage}/>}
-                <NavigationContainer />
+                <Navigation />
                 <div className='app-content'>
                     <Switch>
                         <Route exact path='/' render={ () => <Redirect to='/profile' />} />

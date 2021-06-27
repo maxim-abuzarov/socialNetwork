@@ -1,37 +1,52 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import usersClasses from './users.module.css'
 import Loading from '../common/loading/Loading'
 import Paginator from '../common/paginator/Paginator'
-import {UserType} from '../../types/types'
 import User from './User'
 import UsersSearchForm from './UsersSearchForm'
-import {FilterType} from '../../redux/reducers/usersReducer'
+import {FilterType, follow, getUsers, unfollow} from '../../redux/reducers/usersReducer'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+    getCurrentPage,
+    getFollowingProgress,
+    getIsLoading,
+    getPageSize,
+    getTotalUsersCount,
+    getUsersFilter,
+    getUsersInfo
+} from '../../redux/selectors/usersSelectors'
 
-type PropsType = {
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    users: UserType[]
-    followingProgress: number[]
-    isLoading: boolean
-    onFilterChanged: (filter: FilterType) => void
-    onPageChanged: (pageNumber: number) => void
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-}
+const Users: FC = () => {
+    const users = useSelector(getUsersInfo)
+    const totalUsersCount = useSelector(getTotalUsersCount)
+    const currentPage = useSelector(getCurrentPage)
+    const pageSize = useSelector(getPageSize)
+    const isLoading = useSelector(getIsLoading)
+    const filter = useSelector(getUsersFilter)
+    const followingProgress = useSelector(getFollowingProgress)
 
-const Users: FC<PropsType> = ({
-                                  totalUsersCount,
-                                  pageSize,
-                                  currentPage,
-                                  users,
-                                  followingProgress,
-                                  isLoading,
-                                  onPageChanged,
-                                  follow,
-                                  unfollow,
-                                  onFilterChanged
-}) => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getUsers(currentPage, pageSize, filter))
+    }, [currentPage, pageSize, filter, dispatch])
+
+    const followUser = (userId: number) => {
+        dispatch(follow(userId))
+    }
+
+    const unfollowUser = (userId: number) => {
+        dispatch(unfollow(userId))
+    }
+
+    const onPageChanged = (pageNumber: number) => {
+       dispatch(getUsers(pageNumber, pageSize, filter))
+    }
+
+    const onFilterChanged = (filter: FilterType) => {
+        dispatch(getUsers(1, pageSize, filter))
+    }
+
     return (
         <div className={usersClasses.inner}>
             {isLoading ? <Loading /> : null}
@@ -51,8 +66,8 @@ const Users: FC<PropsType> = ({
                     key={user.id}
                     user={user}
                     followingProgress={followingProgress}
-                    follow={follow}
-                    unfollow={unfollow}
+                    follow={followUser}
+                    unfollow={unfollowUser}
                     isLoading={isLoading}
                 />})
             }
