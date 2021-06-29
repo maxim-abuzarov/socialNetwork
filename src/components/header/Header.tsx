@@ -2,7 +2,7 @@ import React from 'react'
 import logo from './../../assets/img/logo.svg'
 import headerClasses from './header.module.css'
 import {NavLink} from 'react-router-dom'
-import { FC } from 'react'
+import {FC} from 'react'
 
 export type MapPropsTypes = {
     isAuth: boolean
@@ -25,7 +25,7 @@ const Header: FC<MapPropsTypes & DispatchPropsTypes> = ({isAuth, login, logout})
 
             <div className={headerClasses.login}>
                 {isAuth
-                    ? <h1>{login} - <button className={headerClasses.logout} onClick={logout}>Logout</button></h1>
+                    ? <h1>{login} <button className={headerClasses.logout} onClick={logout}>Logout</button></h1>
                     : <NavLink to='/login'>Login</NavLink>
                 }
             </div>

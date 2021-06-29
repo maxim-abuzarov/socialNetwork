@@ -8,6 +8,7 @@ import usersReducer from './reducers/usersReducer'
 import authReducer from './reducers/authReducer'
 import appReducer from './reducers/appReducer'
 import errorReducer from './reducers/errorReducer'
+import chatReducer from './reducers/chatReducer'
 
 // types for all app state
 type RootReducerType = typeof rootReducer
@@ -27,6 +28,7 @@ let rootReducer = combineReducers({
     auth: authReducer,
     app: appReducer,
     error: errorReducer,
+    chat: chatReducer,
     form: formReducer
 })
 

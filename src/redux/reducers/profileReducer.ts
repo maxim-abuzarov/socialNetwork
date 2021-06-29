@@ -5,6 +5,7 @@ import {PhotosType, PostType, ProfileType} from '../../types/types'
 import {profileAPI} from '../../api/profileAPI'
 import {BaseThunkType, InferActionTypes} from '../store'
 import {ResultCodes} from '../../api/api'
+import {v1} from 'uuid'
 
 type InitialStateType = typeof initialState
 type ActionsTypes = InferActionTypes<typeof actions>
@@ -20,7 +21,7 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
     switch (action.type) {
         case 'ADD_POST':
             let newPost = {
-                id: 1,
+                id: v1(),
                 author: 'Maxim Abuzarov',
                 date: '30 Aug 2021',
                 title: 'Post #1',

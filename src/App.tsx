@@ -22,10 +22,12 @@ type DispatchPropsType = {
 const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'))
 const Users = React.lazy(() => import('./components/users/Users'))
 const LoginPage = React.lazy(() => import('./components/login/Login'))
+const ChatPage = React.lazy(() => import('./pages/chat/ChatPage'))
 
 const SuspendedMessagesPage = withSuspense(MessagesContainer)
 const SuspendedUsersPage = withSuspense(Users)
 const SuspendedLoginPage = withSuspense(LoginPage)
+const SuspendedChatPage = withSuspense(ChatPage)
 
 class App extends React.Component<MapPropsType & DispatchPropsType> {
     componentDidMount() {
@@ -49,6 +51,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                         <Route path='/messages' render={ () => <SuspendedMessagesPage />}/>
                         <Route path='/users' render={ () => <SuspendedUsersPage />}/>
                         <Route path='/login' render={ () => <SuspendedLoginPage />}/>
+                        <Route path='/chat' render={ () => <SuspendedChatPage />}/>
                         <Route path='*' render={ () => <div className='page404'>404 :(</div> }/>
                     </Switch>
                 </div>

@@ -1,8 +1,9 @@
 import {InferActionTypes} from '../store'
+import {v1} from 'uuid'
 
 type InitialStateType = typeof initialState
 export type MessagesType = {
-    id: number
+    id: string
     message: string
 }
 type ActionsTypes = InferActionTypes<typeof actions>
@@ -15,7 +16,7 @@ const messagesReducer = (state = initialState, action: ActionsTypes): InitialSta
     switch (action.type) {
         case 'SEND_MESSAGE':
             let newMessage = {
-                id: 1,
+                id: v1(),
                 message: action.newMessageText
             }
             return {

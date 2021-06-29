@@ -1,0 +1,100 @@
+.wrapper {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(240, 240, 240);
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.messages {
+    height: 400px;
+    overflow-y: auto;
+    width: 98%;
+    margin-bottom: 15px;
+}
+
+.message {
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.message:last-child {
+    margin-bottom: 0;
+}
+
+.header {
+    display: block;
+    color: rgb(42, 88, 133);
+    margin-bottom: 10px
+}
+
+.avatar {
+    display: inline-block;
+}
+
+.avatarWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar img {
+    width: 57px;
+    height: 57px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.author {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.author h4 {
+    line-height: 2.85;
+    font-size: 20px;
+}
+
+.content h2 {
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.send {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 98%;
+}
+
+.send textarea {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px;
+    resize: none;
+    font-size: 15px;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.send button {
+    background-color: transparent;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 7px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.send button:hover {
+    background-color: rgb(240, 240, 240);
+}

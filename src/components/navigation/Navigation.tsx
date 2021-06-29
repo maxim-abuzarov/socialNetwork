@@ -4,6 +4,7 @@ import navigationClasses from './navigation.module.css'
 import profileIcon from './../../assets/img/profile.svg'
 import messagesIcon from './../../assets/img/messages.svg'
 import usersIcon from './../../assets/img/users.svg'
+import chatIcon from './../../assets/img/chat.svg'
 import Friend from './friends/Friend'
 import Loading from '../common/loading/Loading'
 import {useDispatch, useSelector} from 'react-redux'
@@ -52,6 +53,13 @@ const Navigation: FC = () => {
                     <NavLink to="/users" activeClassName={navigationClasses.active}>
                         <img src={usersIcon} alt="Users icon"/>
                         <span>Users</span>
+                    </NavLink>
+                </li>
+
+                <li>
+                    <NavLink to="/chat" activeClassName={navigationClasses.active}>
+                        <img src={chatIcon} alt="Chat icon"/>
+                        <span>Chat</span>
                     </NavLink>
                 </li>
 
