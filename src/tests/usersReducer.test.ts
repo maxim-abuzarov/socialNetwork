@@ -47,7 +47,8 @@ beforeEach(() => {
 		filter: {
 			term: '',
 			friend: null as null | boolean
-		}
+		},
+		isFollow: false
 	}
 })
 

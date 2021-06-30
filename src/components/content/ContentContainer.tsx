@@ -6,6 +6,7 @@ import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {compose} from 'redux'
 import {AppStateType} from '../../redux/store'
 import {ProfileType} from '../../types/types'
+import {follow, isFollowedUser, unfollow} from '../../redux/reducers/usersReducer'
 
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
@@ -14,6 +15,9 @@ type DispatchPropsType = {
     updateStatus: (text: string) => void
     savePhoto: (file: File) => void
     saveProfileData: (profile: ProfileType) => Promise<any>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    isFollowedUser: (userId: number) => void
 }
 type PathParamsType = {
     userId: string
@@ -31,6 +35,7 @@ class ContentContainer extends React.Component<PropsType> {
             }
         }
         this.props.getUserProfile(userId as number)
+        this.props.isFollowedUser(userId as number)
         this.props.getStatus(userId as number)
     }
 
@@ -53,6 +58,10 @@ class ContentContainer extends React.Component<PropsType> {
             isOwner={!this.props.match.params.userId}
             status={this.props.status}
             updateStatus={this.props.updateStatus}
+            isFollow={this.props.isFollow}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
+            authorizedUserId={this.props.authorizedUserId}
         />
     }
 }
@@ -62,11 +71,12 @@ const mapStateToProps = (state: AppStateType) => {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         authorizedUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        isFollow: state.usersPage.isFollow,
     }
 }
 
 export default compose<ComponentType>(
     withRouter,
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto, saveProfileData})
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto, saveProfileData, follow, unfollow, isFollowedUser})
 )(ContentContainer)

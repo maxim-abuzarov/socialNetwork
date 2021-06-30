@@ -5,6 +5,7 @@ import {ChatMessageAPIType} from '../../api/chatApi'
 import {useDispatch, useSelector} from 'react-redux'
 import {sendMessage, startMessagesListening, stopMessagesListening} from '../../redux/reducers/chatReducer'
 import {AppStateType} from '../../redux/store'
+import avatar from './../../assets/img/unknownUser.jpeg'
 
 const ChatPage: FC = () => {
 	return (
@@ -66,7 +67,7 @@ const Message: FC<{message: ChatMessageAPIType}> = React.memo(({message}) => {
 
 				<div className={chatPageClasses.avatar}>
 					<div className={chatPageClasses.avatarWrapper}>
-						<img src={message.photo} alt="Author avatar"/>
+						<img src={message.photo ? message.photo : avatar} alt="Author avatar"/>
 					</div>
 				</div>
 

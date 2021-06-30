@@ -10,6 +10,10 @@ export type ProfilePropsType = {
     isOwner: boolean
     status: string
     updateStatus: (status: string) => void
+    isFollow: boolean
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    authorizedUserId: number | null
 }
 
 const Content: FC<ProfilePropsType> = ({
@@ -18,7 +22,11 @@ const Content: FC<ProfilePropsType> = ({
                                            savePhoto,
                                            isOwner,
                                            status,
-                                           updateStatus
+                                           updateStatus,
+                                           isFollow,
+                                           follow,
+                                           unfollow,
+                                           authorizedUserId
 }) => {
     return (
         <aside>
@@ -28,7 +36,12 @@ const Content: FC<ProfilePropsType> = ({
                      savePhoto={savePhoto}
                      isOwner={isOwner}
                      status={status}
-                     updateStatus={updateStatus} />
+                     updateStatus={updateStatus}
+                     isFollow={isFollow}
+                     follow={follow}
+                     unfollow={unfollow}
+                     authorizedUserId={authorizedUserId}
+            />
 
             <PostsContainer />
 

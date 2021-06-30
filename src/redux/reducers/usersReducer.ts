@@ -20,7 +20,8 @@ const initialState = {
     filter: {
         term: '',
         friend: null as null | boolean
-    }
+    },
+    isFollow: false
 }
 
 const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
@@ -63,6 +64,12 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
                     : state.followingProgress.filter(id => id !== action.userId)
             }
 
+        case 'IS_FOLLOW':
+            return {
+                ...state,
+                isFollow: action.isFollow
+            }
+
         case 'FOLLOW':
             return {
                 ...state,
@@ -102,7 +109,8 @@ export const actions = {
     setCurrentPage: (pageNumber: number) => ({type: 'SET_CURRENT_PAGE', pageNumber} as const),
     setFilter: (filter: FilterType) => ({type: 'SET_FILTER', payload: filter} as const),
     followSuccess: (userId: number) => ({type: 'FOLLOW', userId} as const),
-    unfollowSuccess: (userId: number) => ({type: 'UNFOLLOW', userId} as const)
+    unfollowSuccess: (userId: number) => ({type: 'UNFOLLOW', userId} as const),
+    isFollow: (isFollow: boolean) => ({type: 'IS_FOLLOW', isFollow} as const)
 }
 
 export const getUsers = (currentPage: number, pageSize: number, filter: FilterType): ThunkType => {
@@ -122,6 +130,19 @@ export const getUsers = (currentPage: number, pageSize: number, filter: FilterTy
     }
 }
 
+export const isFollowedUser = (userId: number): ThunkType => {
+    return async (dispatch) => {
+        try {
+            const data = await usersAPI.isFollow(userId)
+            // @ts-ignore
+            dispatch(actions.isFollow(data))
+        } catch (e) {
+            const message = e.message
+            dispatch(action.catchError(true, message))
+        }
+    }
+}
+
 export const follow = (userId: number): ThunkType => {
     return async (dispatch) => {
         try {
@@ -130,6 +151,7 @@ export const follow = (userId: number): ThunkType => {
 
             if (data.resultCode === ResultCodes.Success) {
                 dispatch(actions.followSuccess(userId))
+                dispatch(actions.isFollow(true))
                 await dispatch(getFriendsList())
             }
             dispatch(actions.toggleFollowingProgress(false, userId))
@@ -148,6 +170,7 @@ export const unfollow = (userId: number): ThunkType => {
 
             if (data.resultCode === ResultCodes.Success) {
                 dispatch(actions.unfollowSuccess(userId))
+                dispatch(actions.isFollow(false))
                 await dispatch(getFriendsList())
             }
             dispatch(actions.toggleFollowingProgress(false, userId))

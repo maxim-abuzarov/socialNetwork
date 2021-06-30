@@ -23,7 +23,11 @@ const Profile: FC<ProfilePropsType> = ({
                                            saveProfileData,
                                            isOwner,
                                            status,
-                                           updateStatus
+                                           updateStatus,
+                                           isFollow,
+                                           follow,
+                                           unfollow,
+                                           authorizedUserId
 }) => {
     const [editMode, setEditMode] = useState(false)
 
@@ -50,6 +54,26 @@ const Profile: FC<ProfilePropsType> = ({
 
             <div className={profileClasses.photo}>
                 <img src={profile.photos.large ? profile.photos.large : avatar} alt="Profile avatar"/>
+                {profile.userId === authorizedUserId
+                    ? null
+                    : <div>
+                        {isFollow
+                            ? <button
+                                onClick={() => {
+                                    unfollow(profile.userId)
+                                }}
+                                className={profileClasses.unfollow}
+                            >Followed</button>
+                            : <button
+                                onClick={() => {
+                                    follow(profile.userId)
+                                }}
+                                className={profileClasses.follow}
+                            >Follow</button>
+                        }
+                    </div>
+                }
+
                 {isOwner
                 && <div className={profileClasses.upload}>
                         <button>Add photo</button>

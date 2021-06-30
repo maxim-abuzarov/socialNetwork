@@ -15,6 +15,13 @@ export const usersAPI = {
             })
     },
 
+    isFollow(userId: number) {
+        return instance.get<APIResponseType>(`follow/${userId}`)
+            .then(response => {
+                return response.data
+            })
+    },
+
     follow(userId: number) {
         return instance.post<APIResponseType>(`follow/${userId}`)
             .then(response => {

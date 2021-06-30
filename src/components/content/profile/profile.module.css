@@ -33,6 +33,32 @@
     display: block;
 }
 
+.follow {
+    width: 300px;
+    background-color: transparent;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 7px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.follow:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.unfollow {
+    background-color: rgb(240, 240, 240);
+    width: 300px;
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 7px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
 .upload {
     display: none;
     position: relative;
